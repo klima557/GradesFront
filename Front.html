@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <title>E-Dziennik</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .contentBody {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .contentTables {
+            flex: 1 0 80%;
+        }
+        input:invalid {
+            border-bottom: 4px solid #FF000C !important;
+        }
+        header{
+            background-color: blue;
+            clear: both;
+            padding: 1em;
+            color: lawngreen;
+        }
+        .navigation{
+           flex-direction: row;
+        }
+        .navigation a{
+            display: inline-block;
+            width: 120px;
+        }
+        nav {
+            background: linear-gradient(180deg, blue ,deepskyblue);
+            flex: 1 0 120px;
+            justify-content: center;
+            float: left;
+            color: gold;
+
+        }
+        nav a{
+            margin: 10px auto;
+        }
+        footer{
+            background-color: deepskyblue;
+            clear: both;
+        }
+        table,  td {
+            border: 1px solid black;
+        }
+        th {
+            border: 3px solid black;
+
+        }
+        tbody tr:nth-child(odd){
+            background: deepskyblue;
+        }
+        tbody tr:nth-child(even){
+            background: lightgreen;
+        }
+        tbody tr:nth-child(odd) input{
+            background: deepskyblue;
+            border: none;
+        }
+        tbody tr:nth-child(even) input{
+            background: lightgreen;
+            border: none;
+        }
+        tbody tr:hover {
+            background: cyan;
+
+        }
+        tbody tr:hover input{
+            background: cyan;
+
+        }
+        a:not(:hover){
+            text-decoration-line: none;
+            color: white;
+        }
+        a:hover{
+            color: white;
+        }
+        .navigation {
+            overflow: hidden;
+            position: relative;
+        }
+        .item--toggle {
+            display: block;
+            padding: 5px;
+        }
+        .item:not(:target) {
+            display: none;
+        }
+        @media print {
+            body {
+                color: black;
+                background: white;
+            }
+            header, footer {
+                display: none;
+            }
+            tbody{
+                border: 1px solid black;
+
+            }
+            thead{
+                border: 2px solid black;
+            }
+            table, th, td {
+                border-collapse:collapse;
+                border: 1px solid black;
+                max-width: 100%;
+                text-align: center;
+            }
+            select{
+                border: none;
+                -webkit-appearance: none;
+            }
+            nav, button, .hideToPrint, .navigation {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+
+
+<body>
+<header>
+    <h1>
+        <img src="dziennik.png" alt="Dziennik logo"/>
+        Dziennik
+
+    </h1>
+</header>
+<section class = "contentBody">
+        <nav class="navigation">
+            <ol>
+                <a class="item--toggle" href="#students">Students List</a>
+                <a class="item--toggle" href="#marks">Marks List</a>
+                <a class="item--toggle" href="#courses">Courses List</a>
+            </ol>
+        </nav>
+    <section class = "contentTables">
+    <article class="items">
+        <article class="item" id="students">
+            <form>
+                <table id="student">
+                    <thead>
+                        <tr>
+                            <th colspan = "4">Students List</th>
+                            <th class="hideToPrint">
+                                <button type="button" value="addstud">Add Student</button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="name">Name</th>
+                            <th id="surname">Surname</th>
+                            <th id="index">Index Number</th>
+                            <th id="birth">Date of Brith</th>
+                            <th class="hideToPrint" id="actstud">Action Student</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td headers="name">
+                                <input type="text" value="Jan" placeholder="Name" required>
+                            </td>
+                            <td headers="surname">
+                                <input type="text" value="Kowalski" placeholder="Surname" required>
+                            </td>
+                            <td headers="index">
+                                <input type="text" value="122249" readonly>
+                            </td>
+                            <td headers="birth">
+                                <input type="date" value="1994-05-14" required>
+                            </td>
+                            <td class="hideToPrint" headers="actstud">
+                                <button type="button" value="Delete" onclick="deleteRow(this)">Delete</button>
+                                <button type="button" value="Edit">Edit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td headers="name">
+                                <input type="text" value="Jan" placeholder="Name" required>
+                            </td>
+                            <td headers="surname">
+                                <input type="text" value="Kowalski" placeholder="Surname" required>
+                            </td>
+                            <td headers="index">
+                                <input type="text" value="122249" readonly>
+                            </td>
+                            <td headers="birth">
+                                <input type="date" value="1994-05-14" required>
+                            </td>
+                            <td class="hideToPrint" headers="actstud">
+                                <button type="button" value="Delete" onclick="deleteRow(this)">Delete</button>
+                                <button type="button" value="Edit">Edit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td headers="name">
+                                <input type="text" value="Maria" placeholder="Name" required>
+                            </td>
+                            <td headers="surname">
+                                <input type="text" value="Nowak" placeholder="Surname" required>
+                            </td>
+                            <td headers="index">
+                                <input type="text" value="122397" readonly>
+                            </td>
+                            <td headers="birth">
+                                <input type="date" value="1997-04-11" required>
+                            </td>
+                            <td class="hideToPrint" headers="actstud">
+                                <button type="button" value="Delete" onclick="deleteRow(this)">Delete</button>
+                                <button type="button" value="Edit">Edit</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </form>
+        </article>
+        <article class="item" id="marks">
+            <form>
+            <table id="mark">
+                <thead>
+                    <tr>
+                        <th colspan = "3">Courses List</th>
+                        <th class="hideToPrint">
+                            <button type="button" value="addmark">Add Mark</button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <select>
+                                <option value="jan">Jan Kowalski</option>
+                                <option value="maria">Maria Nowak</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select>
+                                <option value="spcid">SPCiD</option>
+                                <option value="analiza">Analiza Matematyczna</option>
+                            </select>
+                        </th>
+                        <th></th>
+                        <th class="hideToPrint"></th>
+                    </tr>
+                    <tr>
+                        <th id="courseid">Course</th>
+                        <th id="value">Value</th>
+                        <th id="date">Date</th>
+                        <th class="hideToPrint" id="actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" value="SPCiD" placeholder="Course" required>
+                        </td>
+                        <td>
+                            <input type="number" min="2" max="5" step="0.5" placeholder="value" value="4" required>
+                        </td>
+                        <td>
+                            <input type="date" value="2018-07-08" required>
+                        </td>
+                        <td class="hideToPrint">
+                            <button type="button" value="Delete">Delete</button>
+                            <button type="button" value="Edit">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+        </article>
+        <article class="item" id="courses">
+            <form>
+                <table id="course">
+                    <thead>
+                        <tr>
+                            <th colspan = "2">Courses List</th>
+                            <th class="hideToPrint">
+                                <button type="button" value="addcourse">Add Course</button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th id="subject">Subject</th>
+                            <th id="teatcher">Surname</th>
+                            <th class="hideToPrint" id="actsubj">Action Subject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td headers="subject">
+                                <input type="text" value="SPCiD"  placeholder="Course" required>
+                            </td>
+                            <td headers="teatcher">
+                                <input type="text" value="Waldemar Wróblewski" placeholder="Teatcher" required>
+                            </td>
+                            <td class="hideToPrint" headers="actsubj">
+                                <button type="button" value="Delete" onclick="deleteRow3(this)">Delete</button>
+                                <button type="button" value="Edit">Edit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td headers="subject">
+                                <input type="text" value="Analiza Matematyczna" placeholder="Course" required>
+                            </td>
+                            <td headers="teatcher">
+                                <input type="text" value="Marian Liskowski" placeholder="Teatcher" required>
+                            </td>
+                            <td class="hideToPrint" headers="actsubj">
+                                <button type="button" value="Delete" onclick="deleteRow3(this)">Delete</button>
+                                <button type="button" value="Edit">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+            </form>
+        </article>
+    </article>
+        </section>
+</section>
+<footer>
+    <p> &copy; Copyright 2018 <br>
+        Posted by: Jan Klimaszyk</p>
+    <p> &#64; Contact information: <a href="mailto:someone@example.com">
+        someone@example.com</a>. <br> You can check university site at: <a href="https://fc.put.poznan.pl/index.php">
+        Faculty of Computing</a>.<br></p>
+</footer>
+</body>
+
+
+</html>
