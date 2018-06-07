@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.contentBody {
+    display: flex;
+    flex-wrap: wrap;
+}
+.contentTables {
+    flex: 1 0 80%;
+}
+input:invalid {
+    border-bottom: 4px solid #FF000C !important;
+}
+header{
+    background-color: blue;
+    clear: both;
+    padding: 1em;
+    color: lawngreen;
+}
+.navigation{
+    flex-direction: row;
+}
+.navigation a{
+    display: inline-block;
+
+}
+nav {
+    background: linear-gradient(180deg, blue ,deepskyblue);
+    flex: 1 0 120px;
+    justify-content: center;
+    float: left;
+    color: gold;
+
+}
+nav a{
+    margin: 10px auto;
+}
+footer{
+    background-color: deepskyblue;
+    clear: both;
+}
+table,  td {
+    border: 1px solid black;
+}
+th {
+    border: 3px solid black;
+
+}
+tbody tr:nth-child(odd){
+    background: deepskyblue;
+}
+tbody tr:nth-child(even){
+    background: lightgreen;
+}
+tbody tr:nth-child(odd) input{
+    background: deepskyblue;
+    border: none;
+}
+tbody tr:nth-child(even) input{
+    background: lightgreen;
+    border: none;
+}
+tbody tr:hover {
+    background: cyan;
+
+}
+tbody tr:hover input{
+    background: cyan;
+
+}
+a:not(:hover){
+    text-decoration-line: none;
+    color: white;
+}
+a:hover{
+    color: white;
+}
+.navigation {
+    overflow: hidden;
+    position: relative;
+}
+.item--toggle {
+    display: block;
+    padding: 5px;
+}
+.item:not(:target) {
+    display: none;
+}
+@media print {
+    body {
+        color: black;
+        background: white;
+    }
+    header, footer {
+        display: none;
+    }
+    tbody{
+        border: 1px solid black;
+        background: white;
+    }
+    thead{
+        border: 2px solid black;
+        background: white;
+    }
+    tbody tr input, tbody tr{
+        background: white !important;
+    }
+    table, th, td {
+        border-collapse:collapse;
+        border: 1px solid black;
+        max-width: 100%;
+        text-align: center;
+    }
+    select{
+        border: none;
+        -webkit-appearance: none;
+    }
+    nav, button, .hideToPrint, .navigation {
+        display: none;
+    }
+}
